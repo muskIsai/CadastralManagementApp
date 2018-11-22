@@ -10,5 +10,8 @@ namespace CadastralManagemen_app.Models
         public int IdRequest { get; set; }
         public DateTime Date { get; set; }
         public string Status { get; set; }
+
+        public int Iduser { get; set; }
+        public virtual User user { get; set; }
     }
 }

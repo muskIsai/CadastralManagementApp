@@ -9,5 +9,7 @@ namespace CadastralManagemen_app.Models
     {
         public int Idclient { get; set; }
         public int PassportNumber { get; set; }
+
+        List<User> user { get; set; }
     }
 }

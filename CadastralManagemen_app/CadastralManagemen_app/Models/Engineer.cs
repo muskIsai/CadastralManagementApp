@@ -8,6 +8,8 @@ namespace CadastralManagemen_app.Models
     public class Engineer
     {
         public int Idengineer { get; set; }
+
+       
         //
     }
 }
