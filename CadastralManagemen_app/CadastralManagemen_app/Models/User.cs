@@ -26,7 +26,7 @@ namespace CadastralManagemen_app.Models
         public bool EmailConfirmed { get; set; } //Retorna True se o a senha for igual
 
         List<CadastreObjects> cadastreObjects { get; set; }
-        List<Client> client { get; set; }
+       // List<Client> client { get; set; }
 
 
     }

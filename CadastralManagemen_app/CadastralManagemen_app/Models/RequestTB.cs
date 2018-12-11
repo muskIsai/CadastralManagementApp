@@ -12,13 +12,15 @@ namespace CadastralManagemen_app.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Engineer
+    public partial class RequestTB
     {
-        public int IDengineer { get; set; }
-        public string acept { get; set; }
-        public string refuse { get; set; }
+        public int IDrequest { get; set; }
+        public System.DateTime requestDate { get; set; }
+        public string status { get; set; }
         public int IDusers { get; set; }
+        public int IDcadastreObjects { get; set; }
     
+        public virtual CadastreObjectsTB CadastreObjectsTB { get; set; }
         public virtual Users Users { get; set; }
     }
 }

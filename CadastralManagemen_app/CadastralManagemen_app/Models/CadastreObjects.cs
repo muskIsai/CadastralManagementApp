@@ -8,6 +8,7 @@ namespace CadastralManagemen_app.Models
 {
     public class CadastreObjects
     {
+        [Key]
         public int IdCadastreObjects { get; set; }
         [Display(Name = "Адресс")]
         public string Address { get; set; }

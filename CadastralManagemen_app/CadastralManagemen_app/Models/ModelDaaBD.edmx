@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CadastralManagBD1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdiminTB">
+          <Key>
+            <PropertyRef Name="IDadmin" />
+          </Key>
+          <Property Name="IDadmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDusers" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CadastreObjectsTB">
+          <Key>
+            <PropertyRef Name="IDcadastreObjects" />
+          </Key>
+          <Property Name="IDcadastreObjects" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="typeCadastre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="registrationDate" Type="date" Nullable="false" />
+          <Property Name="comment" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="IDusers" Type="int" Nullable="false" />
+          <Property Name="IDreques" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="IDclient" />
+          </Key>
+          <Property Name="IDclient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="passportNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="IDusers" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IdengineerTB">
+          <Key>
+            <PropertyRef Name="IDengineer" />
+          </Key>
+          <Property Name="IDengineer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="acept" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="refuse" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="IDusers" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequestTB">
+          <Key>
+            <PropertyRef Name="IDrequest" />
+          </Key>
+          <Property Name="IDrequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="requestDate" Type="date" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="IDusers" Type="int" Nullable="false" />
+          <Property Name="IDcadastreObjects" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IDusers" />
+          </Key>
+          <Property Name="IDusers" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fullname" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Adimin_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="AdiminTB" Type="Self.AdiminTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IDusers" />
+            </Principal>
+            <Dependent Role="AdiminTB">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CadastreObject_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="CadastreObjectsTB" Type="Self.CadastreObjectsTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IDusers" />
+            </Principal>
+            <Dependent Role="CadastreObjectsTB">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IDusers" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Idengineer_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="IdengineerTB" Type="Self.IdengineerTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IDusers" />
+            </Principal>
+            <Dependent Role="IdengineerTB">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Object">
+          <End Role="CadastreObjectsTB" Type="Self.CadastreObjectsTB" Multiplicity="1" />
+          <End Role="RequestTB" Type="Self.RequestTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CadastreObjectsTB">
+              <PropertyRef Name="IDcadastreObjects" />
+            </Principal>
+            <Dependent Role="RequestTB">
+              <PropertyRef Name="IDcadastreObjects" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="RequestTB" Type="Self.RequestTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IDusers" />
+            </Principal>
+            <Dependent Role="RequestTB">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CadastralManagBD1ModelStoreContainer">
+          <EntitySet Name="AdiminTB" EntityType="Self.AdiminTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CadastreObjectsTB" EntityType="Self.CadastreObjectsTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdengineerTB" EntityType="Self.IdengineerTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestTB" EntityType="Self.RequestTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Adimin_Users" Association="Self.FK_Adimin_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AdiminTB" EntitySet="AdiminTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CadastreObject_Users" Association="Self.FK_CadastreObject_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CadastreObjectsTB" EntitySet="CadastreObjectsTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Users" Association="Self.FK_Client_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Idengineer_Users" Association="Self.FK_Idengineer_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="IdengineerTB" EntitySet="IdengineerTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Object" Association="Self.FK_Request_Object">
+            <End Role="CadastreObjectsTB" EntitySet="CadastreObjectsTB" />
+            <End Role="RequestTB" EntitySet="RequestTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Users" Association="Self.FK_Request_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RequestTB" EntitySet="RequestTB" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CadastralManagBD1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdiminTB">
+          <Key>
+            <PropertyRef Name="IDadmin" />
+          </Key>
+          <Property Name="IDadmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDusers" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Adimin_Users" FromRole="AdiminTB" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="CadastreObjectsTB">
+          <Key>
+            <PropertyRef Name="IDcadastreObjects" />
+          </Key>
+          <Property Name="IDcadastreObjects" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="price" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="typeCadastre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="registrationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="comment" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDusers" Type="Int32" Nullable="false" />
+          <Property Name="IDreques" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_CadastreObject_Users" FromRole="CadastreObjectsTB" ToRole="Users" />
+          <NavigationProperty Name="RequestTB" Relationship="Self.FK_Request_Object" FromRole="CadastreObjectsTB" ToRole="RequestTB" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="IDclient" />
+          </Key>
+          <Property Name="IDclient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="passportNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDusers" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Client_Users" FromRole="Client" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Engineer">
+          <Key>
+            <PropertyRef Name="IDengineer" />
+          </Key>
+          <Property Name="IDengineer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="acept" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="refuse" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDusers" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Idengineer_Users" FromRole="IdengineerTB" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="RequestTB">
+          <Key>
+            <PropertyRef Name="IDrequest" />
+          </Key>
+          <Property Name="IDrequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="requestDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDusers" Type="Int32" Nullable="false" />
+          <Property Name="IDcadastreObjects" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CadastreObjectsTB" Relationship="Self.FK_Request_Object" FromRole="RequestTB" ToRole="CadastreObjectsTB" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Request_Users" FromRole="RequestTB" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IDusers" />
+          </Key>
+          <Property Name="IDusers" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fullname" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AdiminTB" Relationship="Self.FK_Adimin_Users" FromRole="Users" ToRole="AdiminTB" />
+          <NavigationProperty Name="CadastreObjectsTB" Relationship="Self.FK_CadastreObject_Users" FromRole="Users" ToRole="CadastreObjectsTB" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Users" FromRole="Users" ToRole="Client" />
+          <NavigationProperty Name="Engineer" Relationship="Self.FK_Idengineer_Users" FromRole="Users" ToRole="IdengineerTB" />
+          <NavigationProperty Name="RequestTB" Relationship="Self.FK_Request_Users" FromRole="Users" ToRole="RequestTB" />
+        </EntityType>
+        <Association Name="FK_Adimin_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="AdiminTB" Type="Self.AdiminTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IDusers" />
+            </Principal>
+            <Dependent Role="AdiminTB">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CadastreObject_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="CadastreObjectsTB" Type="Self.CadastreObjectsTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IDusers" />
+            </Principal>
+            <Dependent Role="CadastreObjectsTB">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Object">
+          <End Role="CadastreObjectsTB" Type="Self.CadastreObjectsTB" Multiplicity="1" />
+          <End Role="RequestTB" Type="Self.RequestTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CadastreObjectsTB">
+              <PropertyRef Name="IDcadastreObjects" />
+            </Principal>
+            <Dependent Role="RequestTB">
+              <PropertyRef Name="IDcadastreObjects" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IDusers" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Idengineer_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="IdengineerTB" Type="CadastralManagBD1Model.Engineer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IDusers" />
+            </Principal>
+            <Dependent Role="IdengineerTB">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="RequestTB" Type="Self.RequestTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IDusers" />
+            </Principal>
+            <Dependent Role="RequestTB">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CadastralManagBD1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdiminTB" EntityType="Self.AdiminTB" />
+          <EntitySet Name="CadastreObjectsTB" EntityType="Self.CadastreObjectsTB" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Engineer" EntityType="CadastralManagBD1Model.Engineer" />
+          <EntitySet Name="RequestTB" EntityType="Self.RequestTB" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Adimin_Users" Association="Self.FK_Adimin_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AdiminTB" EntitySet="AdiminTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CadastreObject_Users" Association="Self.FK_CadastreObject_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CadastreObjectsTB" EntitySet="CadastreObjectsTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Object" Association="Self.FK_Request_Object">
+            <End Role="CadastreObjectsTB" EntitySet="CadastreObjectsTB" />
+            <End Role="RequestTB" EntitySet="RequestTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Users" Association="Self.FK_Client_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Idengineer_Users" Association="Self.FK_Idengineer_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="IdengineerTB" EntitySet="Engineer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Users" Association="Self.FK_Request_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RequestTB" EntitySet="RequestTB" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CadastralManagBD1ModelStoreContainer" CdmEntityContainer="CadastralManagBD1Entities">
+          <EntitySetMapping Name="AdiminTB">
+            <EntityTypeMapping TypeName="CadastralManagBD1Model.AdiminTB">
+              <MappingFragment StoreEntitySet="AdiminTB">
+                <ScalarProperty Name="IDadmin" ColumnName="IDadmin" />
+                <ScalarProperty Name="IDusers" ColumnName="IDusers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CadastreObjectsTB">
+            <EntityTypeMapping TypeName="CadastralManagBD1Model.CadastreObjectsTB">
+              <MappingFragment StoreEntitySet="CadastreObjectsTB">
+                <ScalarProperty Name="IDcadastreObjects" ColumnName="IDcadastreObjects" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="typeCadastre" ColumnName="typeCadastre" />
+                <ScalarProperty Name="registrationDate" ColumnName="registrationDate" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="IDusers" ColumnName="IDusers" />
+                <ScalarProperty Name="IDreques" ColumnName="IDreques" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="CadastralManagBD1Model.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="IDclient" ColumnName="IDclient" />
+                <ScalarProperty Name="passportNumber" ColumnName="passportNumber" />
+                <ScalarProperty Name="IDusers" ColumnName="IDusers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Engineer">
+            <EntityTypeMapping TypeName="CadastralManagBD1Model.Engineer">
+              <MappingFragment StoreEntitySet="IdengineerTB">
+                <ScalarProperty Name="IDengineer" ColumnName="IDengineer" />
+                <ScalarProperty Name="acept" ColumnName="acept" />
+                <ScalarProperty Name="refuse" ColumnName="refuse" />
+                <ScalarProperty Name="IDusers" ColumnName="IDusers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestTB">
+            <EntityTypeMapping TypeName="CadastralManagBD1Model.RequestTB">
+              <MappingFragment StoreEntitySet="RequestTB">
+                <ScalarProperty Name="IDrequest" ColumnName="IDrequest" />
+                <ScalarProperty Name="requestDate" ColumnName="requestDate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="IDusers" ColumnName="IDusers" />
+                <ScalarProperty Name="IDcadastreObjects" ColumnName="IDcadastreObjects" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CadastralManagBD1Model.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IDusers" ColumnName="IDusers" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

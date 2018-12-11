@@ -12,11 +12,9 @@ namespace CadastralManagemen_app.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Engineer
+    public partial class AdiminTB
     {
-        public int IDengineer { get; set; }
-        public string acept { get; set; }
-        public string refuse { get; set; }
+        public int IDadmin { get; set; }
         public int IDusers { get; set; }
     
         public virtual Users Users { get; set; }
