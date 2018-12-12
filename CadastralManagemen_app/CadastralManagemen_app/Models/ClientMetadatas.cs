@@ -14,10 +14,12 @@ namespace CadastralManagemen_app.Models
 
     public class ClientMetadatas
     {
+        [Display(Name = "ID")]
         public int IDclient { get; set; }
         [Required(ErrorMessage = "Нельзя пропустить это поля")]
         [StringLength(10, ErrorMessage ="Номер поспорта не может быть меньше 8 слов")]
         public string passportNumber { get; set; }
+        [Display(Name = "Пользователь")]
         public int IDusers { get; set; }
 
         public virtual Users Users { get; set; }

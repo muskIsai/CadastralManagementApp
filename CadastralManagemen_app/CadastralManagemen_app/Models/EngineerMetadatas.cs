@@ -19,6 +19,7 @@ namespace CadastralManagemen_app.Models
         public string acept { get; set; }
         [Display(Name = "Отклoнить")]
         public string refuse { get; set; }
+        [Display(Name = "Пользователь")]
         public int IDusers { get; set; }
 
         public virtual Users Users { get; set; }

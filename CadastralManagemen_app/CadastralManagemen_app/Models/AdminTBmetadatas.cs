@@ -14,8 +14,9 @@ namespace CadastralManagemen_app.Models
 
     public class AdminTBmetadatas
     {
+        [Display(Name = "ID")]
         public int IDadmin { get; set; }
-        [Display(Name = "User")]
+        [Display(Name = "Пользователь")]
         public int IDusers { get; set; }
 
         public virtual Users Users { get; set; }
