@@ -29,5 +29,7 @@ namespace CadastralManagemen_app.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<CadastralManagemen_app.Models.CadastreObjectsTB> CadastreObjectsTBs { get; set; }
     }
 }

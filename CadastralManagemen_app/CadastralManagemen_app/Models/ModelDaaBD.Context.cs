@@ -31,5 +31,7 @@ namespace CadastralManagemen_app.Models
         public virtual DbSet<Engineer> Engineer { get; set; }
         public virtual DbSet<RequestTB> RequestTB { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+
+        public System.Data.Entity.DbSet<CadastralManagemen_app.Models.CadastreObjectsTBmetadatas> CadastreObjectsTBmetadatas { get; set; }
     }
 }

@@ -14,7 +14,8 @@ namespace CadastralManagemen_app.Models
 
     public class ClientMetadatas
     {
-        [Display(Name = "ID")]
+       // [Display(Name = "ID")]
+        [Key]
         public int IDclient { get; set; }
         [Required(ErrorMessage = "Нельзя пропустить это поля")]
         [StringLength(10, ErrorMessage ="Номер поспорта не может быть меньше 8 слов")]

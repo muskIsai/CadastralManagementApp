@@ -14,7 +14,8 @@ namespace CadastralManagemen_app.Models
 
     public class RequestTBmetadatas
     {
-        [Display(Name = "ID")]
+       // [Display(Name = "ID")]
+        [Key]
         public int IDrequest { get; set; }
         [Required]
         [Display(Name = "Дата запроса")]

@@ -10,10 +10,12 @@
 namespace CadastralManagemen_app.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Collections.Generic;
     
     public partial class AdiminTB
     {
+        [Key]
         public int IDadmin { get; set; }
         public int IDusers { get; set; }
     

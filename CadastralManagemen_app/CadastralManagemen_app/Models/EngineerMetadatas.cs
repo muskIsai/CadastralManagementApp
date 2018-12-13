@@ -14,6 +14,7 @@ namespace CadastralManagemen_app.Models
 
     public class EngineerMetadatas
     {
+        [Key]
         public int IDengineer { get; set; }
         [Display(Name = "Одобрить")]
         public string acept { get; set; }

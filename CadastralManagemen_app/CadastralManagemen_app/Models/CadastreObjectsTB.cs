@@ -11,7 +11,8 @@ namespace CadastralManagemen_app.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CadastreObjectsTB
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,6 +21,7 @@ namespace CadastralManagemen_app.Models
             this.RequestTB = new HashSet<RequestTB>();
         }
     
+        [Key]
         public int IDcadastreObjects { get; set; }
         public decimal price { get; set; }
         public string typeCadastre { get; set; }

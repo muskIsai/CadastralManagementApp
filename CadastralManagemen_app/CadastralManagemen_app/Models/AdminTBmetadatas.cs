@@ -14,7 +14,8 @@ namespace CadastralManagemen_app.Models
 
     public class AdminTBmetadatas
     {
-        [Display(Name = "ID")]
+       // [Display(Name = "ID")]
+        [Key]
         public int IDadmin { get; set; }
         [Display(Name = "Пользователь")]
         public int IDusers { get; set; }

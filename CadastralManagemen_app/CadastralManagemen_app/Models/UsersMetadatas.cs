@@ -14,7 +14,9 @@ namespace CadastralManagemen_app.Models
 
     public class UsersMetadatas
     {
-        [Display(Name = "ID")]
+
+        // [Display(Name = "ID")]
+        [Key]
         public int IDusers { get; set; }
         [Required(ErrorMessage = "Нельзя пропустить поля фио")]
         [StringLength(15, ErrorMessage = "фио не может быть меньше 15 слов")]

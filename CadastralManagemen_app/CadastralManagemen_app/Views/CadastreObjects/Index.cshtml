@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CadastralManagemen_app.Models.CadastreObjectsTB>
+
+@{
+    ViewBag.Title = "%%Index%%";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.fullname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.typeCadastre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.registrationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDreques)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.fullname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.typeCadastre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.registrationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDreques)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDcadastreObjects }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDcadastreObjects }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDcadastreObjects })
+        </td>
+    </tr>
+}
+
+</table>

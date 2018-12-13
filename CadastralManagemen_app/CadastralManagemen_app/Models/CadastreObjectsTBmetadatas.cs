@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace CadastralManagemen_app.Models
 {
@@ -14,7 +15,15 @@ namespace CadastralManagemen_app.Models
 
     public class CadastreObjectsTBmetadatas
     {
-        [Display(Name = "ID")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CadastreObjectsTBmetadatas()
+        {
+            this.RequestTB = new HashSet<RequestTB>();
+        }
+
+
+        // [Display(Name = "ID")]
+        [Key]
         public int IDcadastreObjects { get; set; }
         [Display(Name = "Cтоимость")]
         public decimal price { get; set; }
