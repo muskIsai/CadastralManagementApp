@@ -17,7 +17,7 @@ namespace CadastralManagemen_app.Controllers
         // GET: CadastreObjects
         public ActionResult Index()
         {
-            var cadastreobject = db.CadastreObjectsTB.Include(m => m.Users).Include(m => m.RequestTB).ToList();
+            var cadastreobject = db.CadastreObjectsTBmetadatas.Include(m => m.Users).Include(m => m.RequestTB).ToList();
             return View(cadastreobject);
             //xtou a retormar uma lista ".ToList()" d tds os cadastros d objecto ".CadastreObjectsTB" disponivel 
             //no contexto db

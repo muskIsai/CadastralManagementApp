@@ -33,5 +33,7 @@ namespace CadastralManagemen_app.Models
         public virtual DbSet<Users> Users { get; set; }
 
         public System.Data.Entity.DbSet<CadastralManagemen_app.Models.CadastreObjectsTBmetadatas> CadastreObjectsTBmetadatas { get; set; }
+
+        public System.Data.Entity.DbSet<CadastralManagemen_app.Models.ClientMetadatas> ClientMetadatas { get; set; }
     }
 }
