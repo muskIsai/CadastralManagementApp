@@ -1,4 +1,4 @@
-﻿@model CadastralManagemen_app.Models.ClientMetadatas
+﻿@model IEnumerable<CadastralManagemen_app.Models.Client>
 
 @{
     ViewBag.Title = "Index";
@@ -6,38 +6,34 @@
 
 <h2>Index</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ClientMetadatas</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.passportNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.passportNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.passportNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.fullname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.passportNumber)
+        </th>
+        <th></th>
+    </tr>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDusers, "IDusers", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IDusers", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDusers, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.fullname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.passportNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDclient }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDclient }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDclient })
+        </td>
+    </tr>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+</table>
