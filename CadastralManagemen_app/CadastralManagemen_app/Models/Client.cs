@@ -11,11 +11,9 @@ namespace CadastralManagemen_app.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Client
     {
-        [Key]
         public int IDclient { get; set; }
         public string passportNumber { get; set; }
         public int IDusers { get; set; }

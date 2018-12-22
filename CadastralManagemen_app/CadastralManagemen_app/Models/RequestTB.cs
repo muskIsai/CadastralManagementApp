@@ -11,11 +11,9 @@ namespace CadastralManagemen_app.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class RequestTB
     {
-        [Key]
         public int IDrequest { get; set; }
         public System.DateTime requestDate { get; set; }
         public string status { get; set; }
