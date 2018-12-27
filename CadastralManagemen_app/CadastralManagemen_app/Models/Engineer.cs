@@ -11,9 +11,11 @@ namespace CadastralManagemen_app.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Engineer
     {
+        [Key]
         public int IDengineer { get; set; }
         public string acept { get; set; }
         public string refuse { get; set; }

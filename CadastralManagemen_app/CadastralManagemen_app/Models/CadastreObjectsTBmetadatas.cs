@@ -38,7 +38,7 @@ namespace CadastralManagemen_app.Models
         [Display(Name = "Пользователь")]
         public int IDusers { get; set; }
         [Display(Name = "Заявка")]
-        public int IDreques { get; set; }
+        public int IDrequest { get; set; }
 
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

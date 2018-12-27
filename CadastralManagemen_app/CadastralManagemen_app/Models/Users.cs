@@ -11,7 +11,8 @@ namespace CadastralManagemen_app.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +24,8 @@ namespace CadastralManagemen_app.Models
             this.Engineer = new HashSet<Engineer>();
             this.RequestTB = new HashSet<RequestTB>();
         }
-    
+
+        [Key]
         public int IDusers { get; set; }
         public string fullname { get; set; }
         public string phoneNumber { get; set; }

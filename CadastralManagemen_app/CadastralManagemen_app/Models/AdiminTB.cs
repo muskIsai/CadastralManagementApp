@@ -11,9 +11,11 @@ namespace CadastralManagemen_app.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class AdiminTB
     {
+        [Key]
         public int IDadmin { get; set; }
         public int IDusers { get; set; }
     

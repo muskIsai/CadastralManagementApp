@@ -26,5 +26,14 @@ namespace CadastralManagemen_app.Controllers
             //objectos e seus respetivos Usuarios (Users) e Pedidos (RequestTB)
             
         }
+
+        //Accao Adicionar
+        public ActionResult Add()
+        {
+            ViewBag.IDusers = new SelectList(db.Users, "Пользователь");
+            ViewBag.IDrequest = new SelectList(db.RequestTB, "Заявка", "status");
+
+            return View();
+        }
     }
 }

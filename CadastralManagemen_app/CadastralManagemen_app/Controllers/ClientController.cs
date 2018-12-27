@@ -15,8 +15,8 @@ namespace CadastralManagemen_app.Controllers
         // GET: Client
         public ActionResult Index()
         {
-            var client = db.Client.Include(x => x.Users);
-            return View(client.ToList());         
+            var client = db.Client.Include(x => x.Users).ToList();
+            return View(client);         
         }
     }
 }
