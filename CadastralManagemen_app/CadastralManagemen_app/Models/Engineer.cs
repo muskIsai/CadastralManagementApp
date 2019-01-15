@@ -21,6 +21,6 @@ namespace CadastralManagemen_app.Models
         public string refuse { get; set; }
         public int IDusers { get; set; }
     
-        public virtual Users Users { get; set; }
+       // public virtual Users Users { get; set; }
     }
 }
